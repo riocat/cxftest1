@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+       ">
+
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <!--<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />-->
+
+    <!--<jaxws:endpoint id="HelloService" implementor="com.yang.cxft1.cxf.service.impl.HelloServiceImpl"
+                    address="/helloService"></jaxws:endpoint>-->
+
+    <jaxws:endpoint id="HelloService" implementor="#helloServiceImpl" address="/helloService"></jaxws:endpoint>
+
+    <jaxws:endpoint id="UserInfoService" implementor="#userInfoServiceImpl" address="/userInfoService"></jaxws:endpoint>
+
+    <jaxws:endpoint id="RoleService" implementor="#roleServiceImpl" address="/roleService"></jaxws:endpoint>
+
+    <jaxws:endpoint id="TeamService" implementor="#teamServiceImpl" address="/TeamService"></jaxws:endpoint>
+</beans>

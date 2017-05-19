@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="cxftest1Interface">
+    <output-path>$PROJECT_DIR$/cxftest1Interface/out</output-path>
+    <root id="archive" name="cxftest1Interface.jar">
+      <element id="module-output" name="cxftest1Interface" />
+    </root>
+  </artifact>
+</component>

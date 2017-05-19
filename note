@@ -1,0 +1,16 @@
+生成这样结构的项目要先建project的空文件夹在打开项目之后再创建module
+
+wsdl2java -p com.yang.cxftest1.service.helloservice http://localhost/service/helloService?wsdl 生成的是java 用javac编译
+wsimport -p com.yang.cxftest1.service.helloservice http://localhost/service/helloService?wsdl
+jar -cf 名字.jar 目标目录 打包
+
+如果客户端要调用多个服务器的服务，直接用用命令生成客户端代码时会由于不同服务所调用实体类生成类objectfactroy等类互相覆盖造成异常。
+如果客户端使用动态方式调用要求客户端的实体类必须和service接口在同一包下。
+如果使用spring配置的接口方式调用只需和服务端相同的接口类和实体类(包路径也可以不一样)，打个包送给客户端即可。
+也可以使用wsiport -keep 这样的命令获得接口和实体类源码将其他类统统删除，修改下接口里的代码将除了@WebService外的注解全部删除。
+使用动态方式调用多个service时可能因为内省缓存原因造成除第一个service外的其他serivce调用异常。
+
+服务器多service客户端解决方式
+UserInfoService:根据wsdl使用wsdl2java直接生成java文件，只保留接口和实体类，接口一定保留好@WebService(name = "*", targetNamespace = "*")注解，
+实体类及接口的路径可以自由定义，在使用spring进行配置即可正常调用 此情况下使用动态调用则会异常。
+HelloSerivce:这种是基本用法(服务端单serivce可以直接用这种方式) 使用wsimport直接生成客户端代码并打成jar包，可以使用spring或动态方式调用

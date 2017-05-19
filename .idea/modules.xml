@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/cxftest1.iml" filepath="$PROJECT_DIR$/.idea/cxftest1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxftest1Client/cxftest1Client.iml" filepath="$PROJECT_DIR$/cxftest1Client/cxftest1Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxftest1Interface/cxftest1Interface.iml" filepath="$PROJECT_DIR$/cxftest1Interface/cxftest1Interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxftest1Service/cxftest1Service.iml" filepath="$PROJECT_DIR$/cxftest1Service/cxftest1Service.iml" />
+    </modules>
+  </component>
+</project>
