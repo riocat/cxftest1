@@ -2,6 +2,7 @@ package com.yang.cxft1.client.service;
 
 import com.yang.cxft1.cxf.service.HelloSerivce;
 import com.yang.cxft1.cxf.service.user.UserInfoService;
+import com.yang.cxft1.interf.entry.team.Team;
 import com.yang.cxft1.interf.service.RoleService;
 import com.yang.cxft1.interf.service.TeamService;
 import com.yang.entry.user.User;
@@ -179,6 +180,18 @@ public class TestService {
 
         System.out.println(teamService.getTeams().getTeams().length);
 
+       /*
+       实体类包名限制发生异常
+        JaxWsDynamicClientFactory factory = JaxWsDynamicClientFactory.newInstance();
+        Client client = factory.createClient("http://localhost:80/service/TeamService?wsdl");
+
+        try {
+            Object[] results = client.invoke("getTeam");
+            System.out.println(((Team)results[0]).getTname());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
     }
 
 }

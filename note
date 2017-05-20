@@ -13,4 +13,5 @@ jar -cf 名字.jar 目标目录 打包
 服务器多service客户端解决方式
 UserInfoService:根据wsdl使用wsdl2java直接生成java文件，只保留接口和实体类，接口一定保留好@WebService(name = "*", targetNamespace = "*")注解，
 实体类及接口的路径可以自由定义，在使用spring进行配置即可正常调用 此情况下使用动态调用则会异常。
-HelloSerivce:这种是基本用法(服务端单serivce可以直接用这种方式) 使用wsimport直接生成客户端代码并打成jar包，可以使用spring或动态方式调用
+HelloService:这种是基本用法(服务端单serivce可以直接用这种方式) 使用wsimport直接生成客户端代码并打成jar包，可以使用spring或动态方式调用
+RoleService及TeamService:使用客户端及服务端共享的jar包，再利用spring方式调用，对于包名都没有任何约束。使用动态方式调用会因为实体类包名问题抛出异常。
