@@ -2,14 +2,18 @@ package com.yang.cxft1.client.service;
 
 import com.yang.cxft1.cxf.service.HelloSerivce;
 import com.yang.cxft1.cxf.service.user.UserInfoService;
+import com.yang.cxft1.interf.entry.Role;
 import com.yang.cxft1.interf.entry.team.Team;
 import com.yang.cxft1.interf.service.RoleService;
 import com.yang.cxft1.interf.service.TeamService;
 import com.yang.entry.user.User;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.endpoint.dynamic.DynamicClientFactory;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 /**
  * Created by ASUS on 2017/5/14.
@@ -166,6 +170,15 @@ public class TestService {
         System.out.println(roleService.getRoleMap().size());
 
         System.out.println(roleService.getRoles().length);
+
+        // 非spring的普通用法
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.setAddress("http://localhost/service/roleService");
+        factory.setServiceClass(RoleService.class);
+
+        RoleService rs = factory.create(RoleService.class);
+        List<Role> roles = rs.getRoleList();
+        System.out.println(roles.get(0).getRname());
     }
 
     private static void teamTest() {
