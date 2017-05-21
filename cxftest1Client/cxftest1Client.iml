@@ -27,6 +27,15 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/webapp/WEB-INF/lib/cxftest1Interface.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-frontend-jaxws:3.1.9" level="project" />
     <orderEntry type="library" name="Maven: xml-resolver:xml-resolver:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.4" level="project" />
@@ -46,6 +55,8 @@
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-ws-policy:3.1.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.neethi:neethi:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-transports-http:3.1.9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.cxf.xjc-utils:cxf-xjc-runtime:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.2.12" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.1.6.RELEASE" level="project" />
@@ -72,16 +83,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/webapp/WEB-INF/lib/helloservice.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/webapp/WEB-INF/lib/cxftest1Interface.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/main/webapp/WEB-INF/lib/hellodatetestwithbindxml.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

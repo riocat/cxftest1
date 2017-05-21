@@ -17,4 +17,5 @@ public interface TeamService {
     public TeamInfo getTeams();
     public TeamInfo getTeamList();
     public TeamInfo getTeamMap();
+    public String initTeam(Team team);
 }

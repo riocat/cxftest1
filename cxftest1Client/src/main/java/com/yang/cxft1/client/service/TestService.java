@@ -1,5 +1,6 @@
 package com.yang.cxft1.client.service;
 
+import com.yang.cxft1.cxf.service.HelloDateTestBean;
 import com.yang.cxft1.cxf.service.HelloSerivce;
 import com.yang.cxft1.cxf.service.user.UserInfoService;
 import com.yang.cxft1.interf.entry.Role;
@@ -13,6 +14,7 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,17 +23,21 @@ import java.util.List;
 public class TestService {
 
     public static void main(String[] args) {
-        dynamicClientFactoryTest();
-
-        jaxWsDynamicClientFactoryTest();
-
-        normalTest();
-
-        beanTest();
-
-        roleTest();
-
-        teamTest();
+//        dynamicClientFactoryTest();
+//
+//        jaxWsDynamicClientFactoryTest();
+//
+//        normalTest();
+//
+//        beanTest();
+//
+//        roleTest();
+//
+//        teamTest();
+//
+//        teamT();
+//
+        helloDateTest();
 
     }
 
@@ -193,6 +199,12 @@ public class TestService {
 
         System.out.println(teamService.getTeams().getTeams().length);
 
+        Team temp = new Team();
+        temp.setId(99);
+        temp.setTname("Falcons");
+        temp.setCreateDate(new Date());
+        System.out.println(teamService.initTeam(temp));
+
        /*
        实体类包名限制发生异常
         JaxWsDynamicClientFactory factory = JaxWsDynamicClientFactory.newInstance();
@@ -205,6 +217,85 @@ public class TestService {
             e.printStackTrace();
         }
         */
+    }
+
+    public static void teamT() {
+        ClassPathXmlApplicationContext cxa = new ClassPathXmlApplicationContext("springbase.xml");
+        TeamService teamService = cxa.getBean("teamService", TeamService.class);
+        Date date = teamService.getTeam().getCreateDate();
+        System.out.println(date.getClass().getName());
+    }
+
+
+    private static void helloDateTest() {
+        JaxWsDynamicClientFactory factory = JaxWsDynamicClientFactory.newInstance();
+        Client client = factory.createClient("http://localhost:80/service/helloService?wsdl");
+
+        try {
+            Object[] results = client.invoke("getHelloDateTestBean");
+            HelloDateTestBean hdt = (HelloDateTestBean) results[0];
+            System.out.println(hdt.getHDate().getClass().getName());
+            System.out.println(hdt.getHDate());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Object[] results = client.invoke("getHelloDate");
+            Date hdt = (Date) results[0];
+            System.out.println(hdt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("--------------------------------");
+
+        DynamicClientFactory dCFactory = DynamicClientFactory.newInstance();
+        Client dCClient = dCFactory.createClient("http://localhost:80/service/helloService?wsdl");
+
+        try {
+            Object[] results = dCClient.invoke("getHelloDateTestBean");
+            System.out.println(((HelloDateTestBean)results[0]).getHDate().getClass().getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Object[] results = dCClient.invoke("getHelloDate");
+            System.out.println(results[0].getClass().getName());
+            System.out.println(results[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("--------------------------------");
+
+        JaxWsDynamicClientFactory jDFactory = JaxWsDynamicClientFactory.newInstance();
+        Client jDClient = jDFactory.createClient("http://localhost:80/service/helloService?wsdl");
+
+        try {
+            Object[] results = jDClient.invoke("getHelloDateTestBean");
+            System.out.println(((HelloDateTestBean)results[0]).getHDate().getClass().getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Object[] results = jDClient.invoke("getHelloDate");
+            System.out.println(results[0].getClass().getName());
+            System.out.println(results[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("--------------------------------");
+
+        ClassPathXmlApplicationContext cxa = new ClassPathXmlApplicationContext("springbase.xml");
+        HelloSerivce helloSerivce = cxa.getBean("helloService", HelloSerivce.class);
+        System.out.println(helloSerivce.getHelloDateTestBean().getHDate());
+        System.out.println(helloSerivce.getHelloDateTestBean().getHDate().getClass().getName());
+        System.out.println(helloSerivce.getHelloDate());
+        System.out.println(helloSerivce.getHelloDate().getClass());
     }
 
 }

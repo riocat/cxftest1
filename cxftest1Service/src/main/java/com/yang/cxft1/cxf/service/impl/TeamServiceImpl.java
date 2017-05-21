@@ -77,4 +77,13 @@ public class TeamServiceImpl implements TeamService {
         ti.setTeamMap(map);
         return ti;
     }
+
+    @Override
+    public String initTeam(Team team) {
+        Team target = new Team();
+        target.setId(team.getId());
+        target.setTname(team.getTname());
+        target.setCreateDate(team.getCreateDate());
+        return "success";
+    }
 }

@@ -1,10 +1,12 @@
 package com.yang.cxft1.cxf.service.impl;
 
+import com.yang.cxft1.cxf.entry.HelloDateTestBean;
 import com.yang.cxft1.cxf.entry.User;
 import com.yang.cxft1.cxf.service.HelloSerivce;
 import org.springframework.stereotype.Component;
 
 import javax.jws.WebService;
+import java.util.Date;
 
 /**
  * Created by ASUS on 2017/5/12.
@@ -24,5 +26,17 @@ public class HelloServiceImpl implements HelloSerivce {
     public User feedUser(User comsumer) {
         comsumer.setName("feeded");
         return comsumer;
+    }
+
+    @Override
+    public HelloDateTestBean getHelloDateTestBean() {
+        HelloDateTestBean hdt = new HelloDateTestBean();
+        hdt.sethDate(new Date());
+        return hdt;
+    }
+
+    @Override
+    public Date getHelloDate() {
+        return new Date();
     }
 }

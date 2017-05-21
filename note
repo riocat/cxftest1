@@ -15,3 +15,21 @@ UserInfoService:根据wsdl使用wsdl2java直接生成java文件，只保留接�
 实体类及接口的路径可以自由定义，在使用spring进行配置即可正常调用 此情况下使用动态调用则会异常。
 HelloService:这种是基本用法(服务端单serivce可以直接用这种方式) 使用wsimport直接生成客户端代码并打成jar包，可以使用spring或动态方式调用
 RoleService及TeamService:使用客户端及服务端共享的jar包，再利用spring方式调用，对于包名都没有任何约束。使用动态方式调用会因为实体类包名问题抛出异常。
+
+cxf日期类型转换
+凡是使用工具生成代码就会发生日期类型匹配问题
+根据wsdl使用wsdl2java或wsimport工具生成的代码date会变为com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl类型，不能直接
+转化为Date类型 如HelloService
+解决方案
+http://cxf.apache.org/docs/wsdl-to-java.html
+http://blog.csdn.net/yuguiyang1990/article/details/9802347
+http://cwfmaker.iteye.com/blog/1142835
+使用定义好的binding.xml参与客户端代码生成
+apache-cxf-3.1.11\bin\wsdl2java -b binding.xml http://localhost/service/helloService?wsdl
+客户端需要引入
+        <dependency>
+            <groupId>org.apache.cxf.xjc-utils</groupId>
+            <artifactId>cxf-xjc-runtime</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+将生成的两个包下的代码(生成时类型已自动转变完成)打成jar包导入工程即可
