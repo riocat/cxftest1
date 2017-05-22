@@ -3,6 +3,7 @@ package com.yang.cxft1.client.service;
 import com.yang.cxft1.cxf.service.HelloDateTestBean;
 import com.yang.cxft1.cxf.service.HelloSerivce;
 import com.yang.cxft1.cxf.service.user.UserInfoService;
+import com.yang.cxft1.cxf.service.weatherservice.WeatherService;
 import com.yang.cxft1.interf.entry.Role;
 import com.yang.cxft1.interf.entry.team.Team;
 import com.yang.cxft1.interf.service.RoleService;
@@ -23,21 +24,23 @@ import java.util.List;
 public class TestService {
 
     public static void main(String[] args) {
-//        dynamicClientFactoryTest();
-//
-//        jaxWsDynamicClientFactoryTest();
-//
-//        normalTest();
-//
-//        beanTest();
-//
-//        roleTest();
-//
-//        teamTest();
-//
-//        teamT();
-//
+        dynamicClientFactoryTest();
+
+        jaxWsDynamicClientFactoryTest();
+
+        normalTest();
+
+        beanTest();
+
+        roleTest();
+
+        teamTest();
+
+        teamT();
+
         helloDateTest();
+
+        weatherTest();
 
     }
 
@@ -255,7 +258,7 @@ public class TestService {
 
         try {
             Object[] results = dCClient.invoke("getHelloDateTestBean");
-            System.out.println(((HelloDateTestBean)results[0]).getHDate().getClass().getName());
+            System.out.println(((HelloDateTestBean) results[0]).getHDate().getClass().getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -275,7 +278,7 @@ public class TestService {
 
         try {
             Object[] results = jDClient.invoke("getHelloDateTestBean");
-            System.out.println(((HelloDateTestBean)results[0]).getHDate().getClass().getName());
+            System.out.println(((HelloDateTestBean) results[0]).getHDate().getClass().getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -296,6 +299,27 @@ public class TestService {
         System.out.println(helloSerivce.getHelloDateTestBean().getHDate().getClass().getName());
         System.out.println(helloSerivce.getHelloDate());
         System.out.println(helloSerivce.getHelloDate().getClass());
+    }
+
+
+    private static void weatherTest() {
+
+        DynamicClientFactory Factory = DynamicClientFactory.newInstance();
+        Client client = Factory.createClient("http://localhost/service/WeatherService?wsdl");
+
+        com.yang.cxft1.cxf.service.weatherservice.User u = new com.yang.cxft1.cxf.service.weatherservice.User();
+        try {
+            u.setName("ad");
+            Object[] results = client.invoke("sendInfoToUser", u);
+            System.out.println(((com.yang.cxft1.cxf.service.weatherservice.User) results[0]).getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ClassPathXmlApplicationContext cxa = new ClassPathXmlApplicationContext("springbase.xml");
+        WeatherService weatherService = cxa.getBean("weatherService", WeatherService.class);
+        u = weatherService.sendInfoToUser(u);
+        System.out.println(u.getName());
     }
 
 }

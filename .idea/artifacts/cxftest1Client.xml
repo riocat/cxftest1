@@ -52,6 +52,7 @@
           <element id="library" level="project" name="Maven: org.apache.cxf.xjc-utils:cxf-xjc-runtime:3.1.0" />
           <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.2.12" />
           <element id="file-copy" path="$PROJECT_DIR$/cxftest1Client/src/main/webapp/WEB-INF/lib/hellodatetestwithbindxml.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/cxftest1Client/src/main/webapp/WEB-INF/lib/weatherservice.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="cxftest1Client/web/Web" />

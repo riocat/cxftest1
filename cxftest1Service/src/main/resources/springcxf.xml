@@ -25,4 +25,6 @@
     <jaxws:endpoint id="RoleService" implementor="#roleServiceImpl" address="/roleService"></jaxws:endpoint>
 
     <jaxws:endpoint id="TeamService" implementor="#teamServiceImpl" address="/TeamService"></jaxws:endpoint>
+
+    <jaxws:endpoint id="WeatherService" implementor="#weatherServiceImpl" address="/WeatherService"></jaxws:endpoint>
 </beans>
